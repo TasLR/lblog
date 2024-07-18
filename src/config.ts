@@ -62,7 +62,7 @@ export const profileConfig: ProfileConfig = {
     {
       name: 'GitHub',
       icon: 'fa6-brands:github',
-      url: 'https://github.com/TasLR/lblog',
+      url: 'https://github.com/TasLR',
     },
   ],
 }
