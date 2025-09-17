@@ -1,0 +1,23 @@
+---
+title: qt project can not load file byond cmake
+published: 2025-09-17
+description: ''
+image: ''
+tags: ["qt","CMake"]
+category: C++
+draft: false 
+---
+## 问题记录
+
+### 异常表现
+    正常流程下完成资源文件创建以及素材添加，UI设计师中能正常加载加入的图片资源，但是运行时发现对应的无法正常加载。
+### 异常定位
+    qt creator默认生成的CMakeList.txt文件只会生成最基本的项目配置(使用qt_standard_project_setup默认仅启用MOC和UIC,导致RCC未被启用)，
+一个qt工程的构建需要启用元对象编译器(MOC)，用户接口编译器(UIC)和资源文件编译器(RCC)，不启用RCC就会导致qrc文件无法被编译成对应的rcc二进制文件并在
+应用运行时能被正确调用。
+
+### 解决方法
+    1. 在qt_standard_project_setup前添加set(CMAKE_AUTORCC ON)以启用RCC编译器
+    2. 在qt_add_executable之后使用qt_add_resources添加素材
+## 总结
+  不可盲目依赖默认生成的构建文件，多加参考官方文档  
